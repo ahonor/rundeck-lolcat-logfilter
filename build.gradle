@@ -21,7 +21,7 @@ sourceCompatibility = 1.8
  * Set this to a comma-separated list of full classnames of your implemented Rundeck
  * plugins.
  */
-ext.pluginClassNames='com.rundeck.plugins.log.LolcatLogFilterPlugin'
+ext.pluginClassNames='com.rundeck.plugins.log.LolcatLogFilterPlugin,com.rundeck.plugins.log.FigletLogFilterPlugin'
 
 
 
@@ -44,6 +44,7 @@ configurations{
 dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.3.11'
     pluginLibs group: 'com.github.jamesnetherton', name: 'lolcat4j', version: '0.3.0'
+    pluginLibs group: 'com.github.dtmo.jfiglet', name: 'jfiglet', version: '1.0.0'
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
@@ -69,7 +70,8 @@ jar {
         attributes 'Rundeck-Plugin-File-Version': version
         attributes 'Rundeck-Plugin-Version': rundeckPluginVersion, 'Rundeck-Plugin-Archive': 'true'
         attributes 'Rundeck-Plugin-Libs': "${libList}"
-        attributes 'Main-Class': "com.rundeck.plugins.log.LolcatLogFilterPlugin"
+        //attributes 'Main-Class': "com.rundeck.plugins.log.LolcatLogFilterPlugin"
+        attributes 'Main-Class': "com.rundeck.plugins.log.figlet.FigletLogFilterPlugin"
         attributes 'Class-Path': "${libList} lib/rundeck-core-${rundeckVersion}.jar"
     }
 }
